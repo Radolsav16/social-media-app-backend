@@ -1,0 +1,14 @@
+import { Router } from "express";
+import homeController from "../controllers/home";
+
+const router = Router();
+
+
+
+// router.use('/api',homeController)
+
+
+
+
+
+export default router;
