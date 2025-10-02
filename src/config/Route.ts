@@ -5,7 +5,7 @@ const router = Router();
 
 
 
-// router.use('/api',homeController)
+router.use('/api/social-media-app/home',homeController)
 
 
 

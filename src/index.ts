@@ -1,49 +1,26 @@
-import dotenv from 'dotenv'
-import express,{Express,Request,Response} from 'express'
-import connectDatabase from './config/databaseConnection';
-// import initApp from './config/express';
-import cors from 'cors';
-// import router from './config/Route';
-dotenv.config()
+import dotenv from "dotenv";
+import express, { Express } from "express";
+import connectDatabase from "./config/databaseConnection";
+import cors from "cors";
+import initApp from "./config/express";
+import router from "./config/Route";
+dotenv.config();
 
 const PORT = process.env.PORT || 3050;
-const DATABASE_URI = process.env.DATABASE_URI || '';
+const DATABASE_URI = process.env.DATABASE_URI || "";
 
-const app:Express = express();
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+const app: Express = express();
 
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-});
-
-
-app.get("/home", (req: Request, res: Response) => {
-    console.log(req)
-  res.send('Hello Home!')
-});
-
-
-
-async function start(){
-    try {
+async function start() {
+  try {
     await connectDatabase(DATABASE_URI);
-    app.listen(PORT,()=>console.log(`App is running on PORT ${PORT}`))
-    } catch (error) {
-        console.log(error)
-    }
-   
+    app.use(cors());
+    initApp(app);
+    app.use(router);
+  } catch (error) {
+    throw Error(`App can't run right now!`)
+  }
 }
-start()
+start();
 
-
-app.listen(3050, () => {
-    console.log('Example app listening on port 3050!');
-    }
-);
-
-
-
-
-
+app.listen(PORT, () => console.log("Example app listening on port 3050!"));
