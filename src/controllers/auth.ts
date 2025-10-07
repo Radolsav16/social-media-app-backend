@@ -1,18 +1,16 @@
 import { Router } from "express";
+import { signUp } from "../services/auth";
 
 const authContoller = Router();
 
 
-authContoller.post('/sign-up',(req,res) =>{
-    const {name,email,password} = req.body;
-    
-
+authContoller.post('/sign-up',async (req,res) =>{
+    const user = await signUp(req.body)
     const data = {
     user: {
-        id: "u12345",
-        name,
-        email,
-        bio: "Frontend developer & coffee lover ☕",
+        id: user._id,
+        name:user.name,
+        email:user.email,
     },
     accessToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.mockToken123456",
 }
