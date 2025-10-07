@@ -4,7 +4,8 @@ import { signUp } from "../services/auth";
 const authContoller = Router();
 
 
-authContoller.post('/sign-up',async (req,res) =>{
+authContoller.post('/sign-up',async (req,res,next) =>{
+    try {
     const {user,token} = await signUp(req.body)
     const data = {
     user: {
@@ -15,7 +16,10 @@ authContoller.post('/sign-up',async (req,res) =>{
     accessToken: token,
 }
    
-    res.send(JSON.stringify(data))
+    res.send(JSON.stringify({...data,message:'Succesfully sign in for Social!🎉'}))
+    } catch (error) {
+        next(error);
+    }
 })
 
 
