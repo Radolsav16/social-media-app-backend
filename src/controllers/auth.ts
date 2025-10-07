@@ -5,14 +5,14 @@ const authContoller = Router();
 
 
 authContoller.post('/sign-up',async (req,res) =>{
-    const user = await signUp(req.body)
+    const {user,token} = await signUp(req.body)
     const data = {
     user: {
         id: user._id,
         name:user.name,
         email:user.email,
     },
-    accessToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.mockToken123456",
+    accessToken: token,
 }
    
     res.send(JSON.stringify(data))
