@@ -8,7 +8,7 @@ dotenv.config();
 
 const PORT = process.env.PORT || 3050;
 const DATABASE_URI = process.env.DATABASE_URI || "";
-
+export const JWT_SECRET = process.env.JWT_SECRET
 const app: Express = express();
 
 async function start() {
