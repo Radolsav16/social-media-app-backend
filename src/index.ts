@@ -12,14 +12,19 @@ export const JWT_SECRET = process.env.JWT_SECRET
 const app: Express = express();
 
 async function start() {
-  try {
     await connectDatabase(DATABASE_URI);
     app.use(cors());
     initApp(app);
     app.use(router);
-  } catch (error) {
-    throw Error(`App can't run right now!`)
-  }
+    app.use((error,req,res,next)=>{
+      console.log(error);
+      const status = error.statusCode || 500;
+      const message = error.message || 'Internal server error!';
+      res.status(status).json({
+        message
+      })
+      
+    })
 }
 start();
 
