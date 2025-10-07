@@ -1,9 +1,9 @@
 import { Router } from "express";
 
-const homeController = Router();
+const uiController = Router();
 
 
-homeController.get('/',(req,res)=>{
+uiController.get('/',(req,res)=>{
     const trendingTopics = [];
     const suggestedUsers = [];
     const title = 'Welcome to Social';
@@ -83,4 +83,4 @@ homeController.get('/',(req,res)=>{
 })
 
 
-export default homeController;
+export default uiController;
