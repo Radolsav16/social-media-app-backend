@@ -4,8 +4,70 @@ const uiController = Router();
 
 
 uiController.get('/',(req,res)=>{
-    const trendingTopics = [];
-    const suggestedUsers = [];
+    const trendingTopics = [
+  {
+    id: 1,
+    name: "#NextJS",
+    posts: 1820,
+    description: "The React framework for production-grade web apps.",
+  },
+  {
+    id: 2,
+    name: "#AI",
+    posts: 2450,
+    description: "Discussions about artificial intelligence and machine learning.",
+  },
+  {
+    id: 3,
+    name: "#WebDesign",
+    posts: 975,
+    description: "Creative design inspiration and front-end development trends.",
+  },
+];
+
+    const suggestedUsers = [
+  {
+    id: 1,
+    name: "Ava Thompson",
+    username: "@avacodes",
+    bio: "Frontend engineer & design systems enthusiast.",
+    avatar: "https://randomuser.me/api/portraits/women/12.jpg",
+    isVerified: true,
+  },
+  {
+    id: 2,
+    name: "Leo Martin",
+    username: "@leoml",
+    bio: "Building AI tools that make life easier. 🚀",
+    avatar: "https://randomuser.me/api/portraits/men/22.jpg",
+    isVerified: false,
+  },
+  {
+    id: 3,
+    name: "Mina Patel",
+    username: "@minapatel",
+    bio: "Product designer exploring creativity & accessibility.",
+    avatar: "https://randomuser.me/api/portraits/women/45.jpg",
+    isVerified: true,
+  },
+  {
+    id: 4,
+    name: "Noah Kim",
+    username: "@noahdev",
+    bio: "Full-stack dev. TypeScript. Next.js. Open Source ❤️",
+    avatar: "https://randomuser.me/api/portraits/men/36.jpg",
+    isVerified: false,
+  },
+  {
+    id: 5,
+    name: "Sofia Rossi",
+    username: "@sofiarossi",
+    bio: "Writer. Tech lover. Sharing startup journeys.",
+    avatar: "https://randomuser.me/api/portraits/women/68.jpg",
+    isVerified: true,
+  },
+];
+
     const title = 'Welcome to Social';
     const subTitle = 'Connect with friends, share moments, and explore communities.';
     const buttonsTexts = ['Get Started','Log in'];

@@ -17,7 +17,6 @@ async function start() {
     initApp(app);
     app.use(router);
     app.use((error,req,res,next)=>{
-      console.log(error);
       const status = error.statusCode || 500;
       const message = error.message || 'Internal server error!';
       res.status(status).json({
