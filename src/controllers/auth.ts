@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { signUp } from "../services/auth";
+import { signIn, signUp } from "../services/auth";
 
 const authContoller = Router();
 
@@ -16,24 +16,25 @@ authContoller.post('/sign-up',async (req,res,next) =>{
     accessToken: token,
 }
    
-    res.send(JSON.stringify({...data,message:'Succesfully sign in for Social!🎉'}))
+    res.send(JSON.stringify({...data,message:'Succesfully sign up for Social!🎉'}))
     } catch (error) {
         next(error);
     }
 })
 
 
-authContoller.post('/sign-in',(req,res)=>{
-    const {email,password} = req.body;
+authContoller.post('/sign-in',async (req,res)=>{
+    const {user,token} = await signIn(req.body)
     const data = {
         user:{
-            email,
-            password
+            id:user._id,
+            name:user.name,
+            email:user.email
         },
-        accessToken:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.mockToken123456"
+        accessToken:token
     }
 
-    res.send(JSON.stringify(data))
+    res.send(JSON.stringify({...data,message:'Succesfully sign in for Social!🎉'}))
 
 })
 
